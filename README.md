@@ -10,8 +10,8 @@ Official GitHub repository: [JedWatson/keystone](https://github.com/JedWatson/ke
 
 Run MongoDB as separate container:
 
-	docker run -d -name mongo dockerfile/mongodb
+	docker run -d --name mongo mongo
 
 Run KeystoneJS linked with MongoDB:
 
-	docker run -d -p 8080:8080 --link mongo:mongo mahnunchik/keystonejs
+	docker run --rm -p 8080:8080 --link mongo:mongo --entrypoint /bin/bash mahnunchik/keystonejs -c "export CLOUDINARY_URL=cloudinary://<signup for a url>; export MONGO_URI=mongodb://mongo:27017/; node keystone.js"
